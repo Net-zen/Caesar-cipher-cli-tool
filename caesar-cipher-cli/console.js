@@ -22,15 +22,25 @@ const argumentsChecker = async arguments => {
   const {action, shift, input, output} = arguments
 
   if (input !== undefined) {
-    await fs.access(path.join(__dirname, input), (err) => {
-      err && errorHandler(new Error('Input file not exist!'))
-    })
+    // await fs.access(path.join(__dirname, input), (err) => {
+    //   err && errorHandler(new Error('Input file not exist!'))
+    // })
+    try {
+      await fs.promises.access(path.join(__dirname, output))
+    } catch (err) {
+      errorHandler(new Error('Output file not exist!'))
+    }
   }
 
   if (output !== undefined) {
-    await fs.access(path.join(__dirname, output),  (err) => {
-      err && errorHandler(new Error('Output file not exist!'))
-    })
+  //   await fs.access(path.join(__dirname, output),  (err) => {
+  //     err && errorHandler(new Error('Output file not exist!'))
+  //   })
+    try {
+      await fs.promises.access(path.join(__dirname, output))
+    } catch (err) {
+      errorHandler(new Error('Output file not exist!'))
+    }
   }
 
   if (!action) {
