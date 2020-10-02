@@ -12,8 +12,8 @@ process.on('SIGINT', function () {
   console.log('Caught interrupt signal. Good bye!')
   process.exit()
 })
-// const main = async arguments => {
-  argumentsChecker(arguments)
+const main = async arguments => {
+  await argumentsChecker(arguments)
 
   const inputFile = 'input' in arguments && path.join(__dirname, arguments.input)
   const outputFile = 'output' in arguments && path.join(__dirname, arguments.output)
@@ -25,7 +25,7 @@ process.on('SIGINT', function () {
     outputFile ? fs.createWriteStream(outputFile, {flags: 'a', encoding: `utf8`}) : process.stdout,
     (err) => err && console.error(err)
   )
-// }
+}
 
-// main(arguments)
+main(arguments)
 
