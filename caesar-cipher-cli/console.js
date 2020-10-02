@@ -48,8 +48,6 @@ const argumentsChecker = async arguments => {
   if (!Number.isInteger(shift)) {
     await errorHandler(new Error('shift must be integer!'))
   }
-
-  // return new Promise(res => true)
 }
 
 module.exports = {

@@ -9,11 +9,11 @@ const {encrypt} = require('./encryptor')
 console.log('Press CTRL + C to exit');
 
 process.on('SIGINT', function () {
-  console.log("Caught interrupt signal")
+  console.log('Caught interrupt signal. Good bye!')
   process.exit()
 })
-const main = async arguments => {
-  await argumentsChecker(arguments)
+// const main = async arguments => {
+  argumentsChecker(arguments)
 
   const inputFile = 'input' in arguments && path.join(__dirname, arguments.input)
   const outputFile = 'output' in arguments && path.join(__dirname, arguments.output)
@@ -25,7 +25,7 @@ const main = async arguments => {
     outputFile ? fs.createWriteStream(outputFile, {flags: 'a', encoding: `utf8`}) : process.stdout,
     (err) => err && console.error(err)
   )
-}
+// }
 
-main(arguments)
+// main(arguments)
 
