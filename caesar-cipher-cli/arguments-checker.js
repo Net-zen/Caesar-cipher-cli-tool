@@ -6,22 +6,6 @@ const errorHandler = require('./error-handler')
 const argumentsChecker = async arguments => {
   const {action, shift, input, output} = arguments
 
-  if (input !== undefined) {
-    try {
-      await fs.promises.access(path.resolve(__dirname, input))
-    } catch (err) {
-      errorHandler(new Error('Input file does not exist!'))
-    }
-  }
-
-  if (output !== undefined) {
-    try {
-      await fs.promises.access(path.resolve(__dirname, output))
-    } catch (err) {
-      errorHandler(new Error('Output file does not exist!'))
-    }
-  }
-
   if (!action) {
     await errorHandler(new Error('action parameter is required!'))
   }
@@ -36,6 +20,22 @@ const argumentsChecker = async arguments => {
 
   if (!Number.isInteger(shift)) {
     await errorHandler(new Error('shift must be integer!'))
+  }
+
+  if (input !== undefined) {
+    try {
+      await fs.promises.access(path.resolve(__dirname, input))
+    } catch (err) {
+      errorHandler(new Error('Input file does not exist!'))
+    }
+  }
+
+  if (output !== undefined) {
+    try {
+      await fs.promises.access(path.resolve(__dirname, output))
+    } catch (err) {
+      errorHandler(new Error('Output file does not exist!'))
+    }
   }
 }
 
