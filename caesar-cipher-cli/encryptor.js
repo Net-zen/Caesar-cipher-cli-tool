@@ -1,17 +1,6 @@
-const {Transform} = require('stream')
-
-const {arguments} = require('./console')
-
 const alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
-const encrypt = new Transform({
-  transform(chunk, enc, callback) {
-    callback(null,  encryptor(chunk.toString()))
-  }
-})
-
-const encryptor = (data) => {
-  let {action, shift} = arguments
+const encryptor = (data, shift, action) => {
 
   if (Math.abs(shift) > alphabet.length) {
     shift = Math.abs(shift) % alphabet.length
@@ -36,4 +25,4 @@ const encryptor = (data) => {
 }
 
 
-module.exports = {encrypt}
+module.exports = encryptor

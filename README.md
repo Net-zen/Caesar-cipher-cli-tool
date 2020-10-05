@@ -13,5 +13,6 @@
 2. To run script
 
         node cipher -a encode -s -7 
-        node cipher --action encode --shift 7 --output encoded.txt
-        node cipher --action decode --shift 7 --input decoded.txt --output plain.txt
+        node cipher --action encode --shift 7 --output output.txt
+        node cipher --action decode --shift 7 --input "./input.txt" --output "output.txt"
+        node cipher --action decode --shift 7 --input "C:\input.txt" --output "./output.txt"

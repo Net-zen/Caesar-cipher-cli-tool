@@ -1,31 +1,28 @@
-const fs = require('fs')
-const {pipeline} = require('stream')
-const path = require('path')
+const { program } = require('commander')
 
-const {arguments} = require('./console')
-const {argumentsChecker} = require('./console')
-const {encrypt} = require('./encryptor')
+const main = require('./main')
 
-console.log('Press CTRL + C to exit');
 
-process.on('SIGINT', function () {
+console.log('Press CTRL + C to exit')
+process.on('SIGINT',  () => {
   console.log('Caught interrupt signal. Good bye!')
   process.exit()
 })
-const main = async arguments => {
-  await argumentsChecker(arguments)
-
-  const inputFile = 'input' in arguments && path.join(__dirname, arguments.input)
-  const outputFile = 'output' in arguments && path.join(__dirname, arguments.output)
 
 
-  pipeline(
-    inputFile ? fs.createReadStream(inputFile, 'utf8') : process.stdin,
-    encrypt,
-    outputFile ? fs.createWriteStream(outputFile, {flags: 'a', encoding: `utf8`}) : process.stdout,
-    (err) => err && console.error(err)
-  )
-}
+program
+  .storeOptionsAsProperties(false)
+  .passCommandToAction(false)
+  .option('-s, --shift <shift>')
+  .option('-i, --input <input>')
+  .option('-o, --output <output>')
+  .option('-a, --action <action>')
+
+program.parse(process.argv)
+const arguments = program.opts()
+arguments.shift = Number(arguments.shift)
+arguments.action = arguments.action.toLowerCase()
+
 
 main(arguments)
 

@@ -3,4 +3,4 @@ const errorHandler = error => {
   process.exit(1)
 }
 
-module.exports = {errorHandler}
+module.exports = errorHandler
