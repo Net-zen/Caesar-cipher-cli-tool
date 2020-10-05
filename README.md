@@ -25,7 +25,7 @@
         node cipher --action decode --shift 7 --input "./input.txt" --output "output.txt"
         node cipher --action encode --shift 28 --input "C:\input.txt" --output "./output.txt"
 
-##Options
+## Options
 
 |  alias | full name  |       description       |
 | -------| ---------- | ----------------------- |
