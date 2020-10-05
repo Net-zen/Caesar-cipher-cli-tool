@@ -27,7 +27,7 @@
 
 ## Options
 
-|  alias | full name  |       description       |
+|  alias | option  |       description       |
 | -------| ---------- | ----------------------- |
 | -a     | --action   | action (encode/decode)*|
 | -s     | --shift    | shift*                 |
