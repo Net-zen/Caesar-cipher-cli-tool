@@ -20,8 +20,8 @@ program
 
 program.parse(process.argv)
 const arguments = program.opts()
-arguments.shift = Number(arguments.shift)
-arguments.action = arguments.action.toLowerCase()
+arguments.shift = arguments.shift && Number(arguments.shift)
+arguments.action = arguments.action && arguments.action.toLowerCase()
 
 
 main(arguments)
